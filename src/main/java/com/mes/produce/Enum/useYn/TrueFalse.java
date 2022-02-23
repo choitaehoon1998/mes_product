@@ -2,14 +2,14 @@ package com.mes.produce.Enum.useYn;
 
 import com.mes.produce.Enum.CodeValue;
 
-public enum UseYn implements CodeValue {
-	Y("Y", "사용함"),
-	N("N", "사용안함");
+public enum TrueFalse implements CodeValue {
+	Y("Y", "사실"),
+	N("N", "거짓");
 
 	private String code;
 	private String value;
 
-	UseYn(String code, String value) {
+	TrueFalse(String code, String value) {
 		this.code = code;
 		this.value = value;
 	}

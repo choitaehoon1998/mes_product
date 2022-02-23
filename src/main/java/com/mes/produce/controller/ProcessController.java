@@ -23,13 +23,12 @@ public class ProcessController {
 	@GetMapping("/process")
 	public ResponseEntity<List<Process>> getAllByParam() {
 		List<Process> processList = processService.findByParam(new HashMap<String, Object>() {{
-			put("aa", "aa");
 		}});
 		return ok(processList);
 	}
 
 	@PostMapping(value = "/process", consumes = MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<Void> saveNewProcess(@RequestPart(value = "process") Process process) {
+	public ResponseEntity<Void> saveNewProcess(@RequestPart("process") Process process) {
 		processService.saveNewProcess(process);
 		return ok().build();
 	}
@@ -41,7 +40,7 @@ public class ProcessController {
 	}
 
 	@DeleteMapping(value = "/process/{processIndexNo}")
-	public ResponseEntity<Void> deleteProcess(@PathVariable(value = "processIndexNo") Long processIndexNo){
+	public ResponseEntity<Void> deleteProcess(@PathVariable(value = "processIndexNo") Long processIndexNo) {
 		processService.deleteProcess(processIndexNo);
 		return ok().build();
 	}

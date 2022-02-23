@@ -1,4 +1,7 @@
 spring:
+  file:
+    upload:
+      filePath: /uploadDir
   datasource:
     driver-class-name:
     url: jdbc:mysql://localhost:3306/mes_produce?serverTimezone=UTC&characterEncoding=UTF-8

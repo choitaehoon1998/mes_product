@@ -1,7 +1,7 @@
 package com.mes.produce.entity;
 
-import com.mes.produce.Enum.useYn.UseYn;
-import com.mes.produce.Enum.useYn.UseYnConvertor;
+import com.mes.produce.Enum.useYn.TrueFalse;
+import com.mes.produce.Enum.useYn.TrueFalseConvertor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,8 +27,8 @@ public class Process {
 	private String outsourcingType;
 
 	@Column(name = "USE_YN")
-	@Convert(converter = UseYnConvertor.class)
-	private UseYn useYn;
+	@Convert(converter = TrueFalseConvertor.class)
+	private TrueFalse trueFalse;
 
 	@Column(name = "CUST_CD")
 	private String custCd;
