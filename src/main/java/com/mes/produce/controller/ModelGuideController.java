@@ -30,7 +30,7 @@ public class ModelGuideController {
 	}
 
 	@GetMapping(value = "/modelGuide")
-	public ResponseEntity<List<ModelGuide>> findAllByParam(@RequestParam(name = "modelIndexNo") Long modelIndexNo) {
+	public ResponseEntity<List<ModelGuide>> findAllByParam(@RequestParam(name = "modelIndexNo", required = false) Long modelIndexNo) {
 		List<ModelGuide> modelGuideList = modelGuideService.findByParam(new HashMap<String, Object>() {{
 			put("modelIndexNo", modelIndexNo);
 		}});
@@ -47,7 +47,7 @@ public class ModelGuideController {
 	public ResponseEntity<Void> saveNewFile(@RequestPart("modelGuideIndexNo") Long modelGuideIndexNo,
 	                                        @RequestPart("file") MultipartFile file) throws IOException {
 		HashMap<String, String> filePathMap = fileService.uploadFile(file);
-		modelGuideService.updateFileInfoModelGuide(modelGuideIndexNo,filePathMap);
+		modelGuideService.updateFileInfoModelGuide(modelGuideIndexNo, filePathMap);
 		return ok().build();
 	}
 }
