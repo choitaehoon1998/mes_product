@@ -7,7 +7,5 @@ import lombok.Setter;
 @Setter
 public class ModelGuideRequestDto {
 	private Long modelIndexNo;
-	private Long revisionNo;
-	private String isLastRevision;
 	private String guideType;
 }

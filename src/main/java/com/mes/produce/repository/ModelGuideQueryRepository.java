@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ModelGuideQueryRepository {
 	List<ModelGuide> findByParam(HashMap<String, Object> hashMap);
+
+	ModelGuide findLastModelGuideByModelIndexNo(Long modelIndexNo);
 }

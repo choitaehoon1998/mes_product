@@ -23,6 +23,14 @@ public class ModelGuideRepositoryImpl implements ModelGuideQueryRepository {
 				.fetch();
 	}
 
+	@Override
+	public ModelGuide findLastModelGuideByModelIndexNo(Long modelIndexNo) {
+		return queryFactory
+				.selectFrom(modelGuide)
+				.where(eqModelIndexNo(modelIndexNo))
+				.orderBy(modelGuide.revisionNo.desc()).fetchOne();
+	}
+
 	private BooleanExpression eqModelIndexNo(Long modelIndexNo) {
 		if (modelIndexNo == null) {
 			return null;
