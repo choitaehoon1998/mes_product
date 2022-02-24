@@ -42,7 +42,7 @@ public class BomService {
 
 			Bom newBom = new Bom();
 			BeanUtils.copyProperties(bom, newBom, "bomVersionNumber", "indexNo");
-			newBom.setBomVersionNumber(bom.getBomVersionNumber() + 1);
+			newBom.setBomVersionNumber(dbBom.getBomVersionNumber() + 1);
 			newBom.setIsLastVersion("Y");
 			newBom = bomRepository.save(newBom);
 			List<BomItem> bomItemList = dbBom.getBomItemList();

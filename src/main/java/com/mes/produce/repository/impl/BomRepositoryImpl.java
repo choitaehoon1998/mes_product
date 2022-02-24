@@ -19,12 +19,13 @@ public class BomRepositoryImpl implements BomQueryRepository {
 	@Override
 	public List<BomResponseDto> findAllByParam(HashMap<String, Object> hashMap) {
 		return queryFactory.select(Projections.fields(BomResponseDto.class,
-				bom.indexNo.as("indexNo"),
-				bom.bomPartNumber.as("bomPartNumber"),
-				bom.bomVersionNumber.as("bomVersionNumber"),
-				bom.bomName.as("bomName"),
-				bom.isLastVersion.as("isLastVersion"))).from(bom)
-				.where(eqIsLastVersion((String) hashMap.get("isLastRevision"))).fetch();
+						bom.indexNo.as("indexNo"),
+						bom.bomPartNumber.as("bomPartNumber"),
+						bom.bomVersionNumber.as("bomVersionNumber"),
+						bom.bomName.as("bomName"),
+						bom.isLastVersion.as("isLastVersion"))).from(bom)
+				.where(eqIsLastVersion((String) hashMap.get("isLastRevision")),
+						eqBomIndexNo((Long) hashMap.get("bomIndexNo"))).fetch();
 	}
 
 	private BooleanExpression eqIsLastVersion(String isLastVersion) {
@@ -32,5 +33,12 @@ public class BomRepositoryImpl implements BomQueryRepository {
 			return bom.isLastVersion.eq("Y");
 		}
 		return null;
+	}
+
+	private BooleanExpression eqBomIndexNo(Long bomIndexNo) {
+		if (bomIndexNo == null) {
+			return null;
+		}
+		return bom.indexNo.eq(bomIndexNo);
 	}
 }

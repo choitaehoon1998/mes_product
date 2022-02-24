@@ -23,9 +23,11 @@ public class BomController {
 
 	@GetMapping("/bom")
 	private ResponseEntity<List<BomResponseDto>> getAllBomByParam(
-			@RequestParam(value = "isLastRevision", defaultValue = "Y", required = false) String isLastRevision) {
+			@RequestParam(value = "isLastRevision", defaultValue = "Y", required = false) String isLastRevision,
+			@RequestParam(value = "bomIndexNo", required = false) Long bomIndexNo) {
 		List<BomResponseDto> bomList = bomService.findBomByParam(new HashMap<String, Object>() {{
 			put("isLastRevision", isLastRevision);
+			put("bomIndexNo", bomIndexNo);
 		}});
 		return ok(bomList);
 	}
