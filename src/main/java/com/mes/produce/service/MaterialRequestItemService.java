@@ -1,5 +1,6 @@
 package com.mes.produce.service;
 
+import com.mes.produce.dto.MaterialRequestItemResponseDto;
 import com.mes.produce.entity.MaterialRequestItem;
 import com.mes.produce.repository.MaterialRequestItemRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class MaterialRequestItemService {
 		this.materialRequestItemRepository = materialRequestItemRepository;
 	}
 
-	public List<MaterialRequestItem> findAllByParam(HashMap<String, Object> hashMap) {
+	public List<MaterialRequestItemResponseDto> findAllByParam(HashMap<String, Object> hashMap) {
 		return materialRequestItemRepository.findAllByParam(hashMap);
 	}
 

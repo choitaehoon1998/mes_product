@@ -1,5 +1,6 @@
 package com.mes.produce.controller;
 
+import com.mes.produce.dto.MaterialRequestItemResponseDto;
 import com.mes.produce.entity.MaterialRequestItem;
 import com.mes.produce.service.MaterialRequestItemService;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,8 @@ public class MaterialRequestItemController {
 	}
 
 	@GetMapping(value = "/materialRequestItem")
-	public ResponseEntity<List<MaterialRequestItem>> getAllByParam(@RequestParam(name = "materialRequestIndexNo", required = false) Long materialRequestIndexNo) {
-		List<MaterialRequestItem> materialRequestItemList = materialRequestItemService.findAllByParam(new HashMap<String, Object>() {{
+	public ResponseEntity<List<MaterialRequestItemResponseDto>> getAllByParam(@RequestParam(name = "materialRequestIndexNo", required = false) Long materialRequestIndexNo) {
+		List<MaterialRequestItemResponseDto> materialRequestItemList = materialRequestItemService.findAllByParam(new HashMap<String, Object>() {{
 			put("materialRequestIndexNo", materialRequestIndexNo);
 		}});
 		return ok(materialRequestItemList);
