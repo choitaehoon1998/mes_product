@@ -1,7 +1,5 @@
 package com.mes.produce.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.mes.produce.Enum.useYn.TrueFalse;
 import com.mes.produce.Enum.useYn.TrueFalseConvertor;
 import lombok.*;
@@ -41,5 +39,4 @@ public class ModelGuide {
 
 	@Column(name = "FILE_PATH", length = 500)
 	private String filePath;
-
 }

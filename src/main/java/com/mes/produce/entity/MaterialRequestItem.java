@@ -40,5 +40,5 @@ public class MaterialRequestItem {
 	private Date inDate;
 
 	@Transient
-	private String isNew;
+	private Long materialRequestIndexNo;
 }

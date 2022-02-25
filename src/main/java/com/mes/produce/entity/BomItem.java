@@ -40,4 +40,7 @@ public class BomItem {
 	@Column(name = "VENDOR")
 	private String vendor;
 
+	@Transient
+	private Long bomIndexNo;
+
 }

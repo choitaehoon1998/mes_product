@@ -4,6 +4,8 @@ import com.mes.produce.entity.MaterialRequest;
 import com.mes.produce.repository.MaterialRequestRepository;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class MaterialRequestService {
 	}
 
 	public void saveMaterialRequest(MaterialRequest materialRequest) {
+		materialRequest.setFormDate(Date.valueOf(LocalDate.now()));
 		materialRequestRepository.save(materialRequest);
 	}
 

@@ -3,6 +3,7 @@ package com.mes.produce.service;
 import com.mes.produce.dto.BomItemResponseDto;
 import com.mes.produce.entity.BomItem;
 import com.mes.produce.repository.BomItemRepository;
+import com.mes.produce.repository.BomRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -11,9 +12,11 @@ import java.util.List;
 @Service
 public class BomItemService {
 	private final BomItemRepository bomItemRepository;
+	private final BomRepository bomRepository;
 
-	public BomItemService(BomItemRepository bomItemRepository) {
+	public BomItemService(BomItemRepository bomItemRepository, BomRepository bomRepository) {
 		this.bomItemRepository = bomItemRepository;
+		this.bomRepository = bomRepository;
 	}
 
 	public List<BomItemResponseDto> findByParam(HashMap<String, Object> hashMap) {
@@ -21,7 +24,10 @@ public class BomItemService {
 	}
 
 	public void saveBomItem(BomItem bomItem) {
-		bomItemRepository.save(bomItem);
+		if (bomItem != null && bomItem.getBomIndexNo() != null && bomRepository.existsById(bomItem.getBomIndexNo())) {
+			bomItem.setBom(bomRepository.findById(bomItem.getBomIndexNo()).get());
+			bomItemRepository.save(bomItem);
+		}
 	}
 
 	public void updateBom(BomItem bomItem) {

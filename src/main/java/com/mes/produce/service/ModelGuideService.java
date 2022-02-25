@@ -27,11 +27,14 @@ public class ModelGuideService {
 
 	public void saveNewModelGuide(ModelGuideRequestDto modelGuideRequestDto) {
 		if (modelGuideRequestDto != null && modelGuideRequestDto.getModelIndexNo() != null && modelRepository.existsById(modelGuideRequestDto.getModelIndexNo())) {
-
 			ModelGuide lastModelGuide = modelGuideRepository.findLastModelGuideByModelIndexNo(modelGuideRequestDto.getModelIndexNo());
-
-			lastModelGuide.setIsLastRevision(TrueFalse.N);
-			modelGuideRepository.save(lastModelGuide);
+			if (lastModelGuide == null) {
+				lastModelGuide = new ModelGuide();
+				lastModelGuide.setRevisionNo(0L);
+			} else {
+				lastModelGuide.setIsLastRevision(TrueFalse.N);
+				modelGuideRepository.save(lastModelGuide);
+			}
 
 			ModelGuide modelGuide = ModelGuide.builder()
 					.model(modelRepository.findById(modelGuideRequestDto.getModelIndexNo()).get())
