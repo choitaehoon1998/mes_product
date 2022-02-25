@@ -1,5 +1,6 @@
 package com.mes.produce.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mes.produce.Enum.useYn.TrueFalse;
 import com.mes.produce.Enum.useYn.TrueFalseConvertor;
 import lombok.*;
@@ -22,6 +23,7 @@ public class ModelGuide {
 
 	@ManyToOne
 	@JoinColumn(name = "MODEL_INDEX_NO")
+	@JsonIgnore
 	private Model model;
 
 	@Column(name = "REVISION_NO")
